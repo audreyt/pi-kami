@@ -141,7 +141,8 @@ const KV_DISK_SPACE_MB = process.env.DS4_KV_DISK_SPACE_MB?.trim() || defaultKvDi
 // Directional steering is opt-in. V4.1 needs one f32 direction per layer at
 // its own width (40 x 5120); V4 vectors (43 x 4096) do not fit it. The pinned
 // engine bundles dir-steering/out/candor-v41.f32, measured at FFN 1. Set
-// DS4_DIR_STEERING_FILE to a V4.1 .f32 and DS4_DIR_STEERING_FFN (optionally ATTN) to enable. The
+// DS4_DIR_STEERING_FILE to a V4.1 .f32 to enable at FFN 0.5 by default;
+// DS4_DIR_STEERING_FFN and DS4_DIR_STEERING_ATTN override the strengths. The
 // pinned engine edits every token (prompt, thinking, answer and tool calls)
 // and rejects --dir-steering-policy, so server and agent get the same flags.
 //
@@ -149,7 +150,7 @@ const KV_DISK_SPACE_MB = process.env.DS4_KV_DISK_SPACE_MB?.trim() || defaultKvDi
 // OpenClaw/Codex-harness replays showed ffn=-2, attn=-0.5 can over-amplify the
 // direction into DSML/tool-call leakage on long 50k+ tool prompts.
 const STEERING_FILE = process.env.DS4_DIR_STEERING_FILE ?? "";
-const STEERING_FFN = process.env.DS4_DIR_STEERING_FFN ?? "0";
+const STEERING_FFN = process.env.DS4_DIR_STEERING_FFN ?? "0.5";
 const STEERING_ATTN = process.env.DS4_DIR_STEERING_ATTN ?? "0";
 const STEERING_ARGS = STEERING_FILE && (Number(STEERING_FFN) !== 0 || Number(STEERING_ATTN) !== 0)
 	? [

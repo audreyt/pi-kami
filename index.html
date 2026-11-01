@@ -10,14 +10,14 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="zh_TW">
-<meta property="og:image" content="https://pi.audreyt.org/og-pi-ds4.jpg?v=0e1f17be34bf">
+<meta property="og:image" content="https://pi.audreyt.org/og-pi-ds4.jpg?v=5e8f094df558">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="pi-kami guide card: ocean horizon, local inference readout. ~107.35 GiB of DeepSeek V4.1 Flash Maya-XS abliterated weights resident plus the vision sidecar, a 128k default window and 37.2 t/s generation on a 128 GB M5 Max.">
 <meta property="og:url" content="https://pi.audreyt.org/">
 <link rel="canonical" href="https://pi.audreyt.org/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pi.audreyt.org/og-pi-ds4.jpg?v=0e1f17be34bf">
+<meta name="twitter:image" content="https://pi.audreyt.org/og-pi-ds4.jpg?v=5e8f094df558">
 <meta name="theme-color" content="#ebe7e4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#161d27" media="(prefers-color-scheme: dark)">
 <link rel="preload" href="fonts/DepartureMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -1087,7 +1087,7 @@ a.gl:hover, a.gl.hot { text-decoration-style: solid; }
 
   <dl class="meta" aria-label="Letter header">
     <dt><span lang="en-GB">Date</span><span lang="zh-TW">日期</span></dt>
-    <dd><span lang="en-GB">23 October 2026 (v 0.8.0)</span><span lang="zh-TW">2026 年 10 月 23 日（v 0.8.0）</span></dd>
+    <dd><span lang="en-GB">1 November 2026 (v 0.8.1)</span><span lang="zh-TW">2026 年 11 月 1 日（v 0.8.1）</span></dd>
     <dt><span lang="en-GB">From</span><span lang="zh-TW">寄件人</span></dt>
     <dd><span lang="en-GB">Audrey Tang <span class="zh">唐鳳</span></span><span lang="zh-TW">唐鳳 Audrey Tang</span></dd>
     <dt><span lang="en-GB">To</span><span lang="zh-TW">收件人</span></dt>
@@ -1239,8 +1239,24 @@ a.gl:hover, a.gl.hot { text-decoration-style: solid; }
   <div class="sep" aria-hidden="true"><svg><use href="#plurality"/></svg></div>
 
   <section class="chapter" id="whatsnew">
-    <span class="chapter-no"><span lang="en-GB">What’s new, October 2026</span><span lang="zh-TW">更新誌　二〇二六年十月</span></span>
-    <h2 class="chapter-title"><span lang="en-GB">v 0.8: a second engine, with earlier releases kept for the record</span><span lang="zh-TW">v 0.8：多一個引擎，舊版紀錄留在後面</span></h2>
+    <span class="chapter-no"><span lang="en-GB">What’s new, November 2026</span><span lang="zh-TW">更新誌　二〇二六年十一月</span></span>
+    <h2 class="chapter-title"><span lang="en-GB">v 0.8.1: candor at 0.5</span><span lang="zh-TW">v 0.8.1：candor 強度 0.5</span></h2>
+
+    <p class="lead" lang="en-GB">Version 0.8.1 sets FFN steering to 0.5 when you select a direction file. Steering is still opt-in: without a direction file, the model runs unsteered.</p>
+    <p class="lead" lang="zh-TW">0.8.1 在選定方向檔後，將 FFN 引導強度預設為 0.5。引導仍須自行開啟：不設定方向檔，模型就不套用引導。</p>
+
+    <ul lang="en-GB">
+      <li><strong>Matched comparison.</strong> The guide compares strengths 0, 0.5 and 1.0 on the same Maya-XS model. Aggregate results support keeping 0.5 for coding and tool use (<a href="#candor-half-check">§4.6</a>).</li>
+      <li><strong>Explicit controls.</strong> Strength overrides still work. Leave the direction file unset, or set both strengths to zero, to turn steering off.</li>
+      <li><strong>Same engines and weights.</strong> The DeepSeek and Flint engine pins and model downloads are unchanged.</li>
+    </ul>
+    <ul lang="zh-TW">
+      <li><strong>同模型比較。</strong>指南以同一個 Maya-XS 模型比較 0、0.5 和 1.0 三種強度。整體結果支持程式與工具操作維持 0.5（<a href="#candor-half-check">§4.6</a>）。</li>
+      <li><strong>保留明確控制。</strong>仍可自行覆寫強度。不設定方向檔，或將兩個強度都設為零，就能關閉引導。</li>
+      <li><strong>引擎與權重照舊。</strong>DeepSeek 與 Flint 的引擎釘版及模型下載都沒有變更。</li>
+    </ul>
+
+    <h3><span class="no">0.8.0</span><span lang="en-GB">pi-kami and a second engine</span><span lang="zh-TW">pi-kami 與第二個引擎</span></h3>
 
     <p class="lead" lang="en-GB">
       Version 0.8.0 renames the extension to pi-kami and adds a second engine. Choose <code>rec/flint</code> in pi and pi-kami runs Flint, Recursive’s open-weight model, on Recursive’s own engine rec, pinned at 0.1.0. <code>ds4/deepseek-v4-flash</code> is still the DeepSeek tier, with the Maya-XS weights from 0.7.3. The runtime names stay as they were: <code>~/.pi/ds4/</code> and every <code>DS4_*</code> variable keeps its spelling.
@@ -1248,8 +1264,6 @@ a.gl:hover, a.gl.hot { text-decoration-style: solid; }
     <p class="lead" lang="zh-TW">
       0.8.0 把擴充套件改名為 pi-kami，並多了一個引擎。在 pi 裡選 <code>rec/flint</code>，pi-kami 會用 Recursive 自家的引擎 rec（固定在 0.1.0）來跑 Recursive 的開放權重模型 Flint。<code>ds4/deepseek-v4-flash</code> 仍是 DeepSeek 這一層，沿用 0.7.3 的 Maya-XS 權重。執行期的名稱都沒變：<code>~/.pi/ds4/</code> 和所有 <code>DS4_*</code> 變數照舊。
     </p>
-
-    <h3><span class="no">0.8.0</span><span lang="en-GB">What changed in the extension</span><span lang="zh-TW">擴充套件改了什麼</span></h3>
 
     <ul lang="en-GB">
       <li><strong>A new name.</strong> pi-ds4 is now pi-kami: <code>pi install https://github.com/audreyt/pi-kami</code>. The old URL still works through GitHub’s redirect. Install from one of them only. pi sees two packages, and the second copy stays inactive and shows a warning.</li>
@@ -2111,14 +2125,24 @@ ln -sfn gguf/DeepSeek-V4.1-Flash-1017-Maya-XS-Abliterated.gguf <span class="hi">
 
     <h3 id="4.6"><span class="no">4.6</span><span lang="en-GB">Turn it on and off</span><span lang="zh-TW">開啟與關閉</span></h3>
 
-    <p lang="en-GB">On the managed path, steering is off by default. To turn it on, set these variables in the shell before starting pi. The bundled V4.1 direction was measured at FFN 1 and pairs best with the <a href="#4.5">§4.5</a> prompt:</p>
-    <p lang="zh-TW">在代管路徑上，引導預設是關的。要開啟，請在啟動 pi 的 shell 設定下面這幾個變數。附帶的 V4.1 方向在 FFN 強度 1 實測過，和 <a href="#4.5">§4.5</a> 的提示搭配最好：</p>
+    <p lang="en-GB">On the managed path, steering is off until you set a direction file. To turn it on, set these variables in the shell before starting pi. The default FFN strength is 0.5. The Maya-XS comparison below tests strengths 0, 0.5 and 1.0, without and with the <a href="#4.5">§4.5</a> prompt:</p>
+    <p lang="zh-TW">在代管路徑上，設定方向檔才會開啟引導。要開啟，請在啟動 pi 的 shell 設定下面這幾個變數。FFN 強度預設為 0.5。下面的 Maya-XS 實測比較了 0、0.5 和 1.0 三種強度，各自不加提示及搭配 <a href="#4.5">§4.5</a> 提示的結果：</p>
 
     <div class="term">
       <div class="term-bar"><span><span lang="en-GB">opt in to steering</span><span lang="zh-TW">開啟引導</span></span><button class="copy" aria-label="Copy the commands to enable steering"><span lang="en-GB">Copy</span><span lang="zh-TW">複製</span></button></div>
       <pre><span class="k">export</span> DS4_DIR_STEERING_FILE<span class="k">=</span><span class="v">dir-steering/out/candor-v41.f32</span>
-<span class="k">export</span> DS4_DIR_STEERING_FFN<span class="k">=</span><span class="v">1</span>
+<span class="k">export</span> DS4_DIR_STEERING_FFN<span class="k">=</span><span class="v">0.5</span>
 <span class="k">export</span> DS4_DIR_STEERING_ATTN<span class="k">=</span><span class="v">0</span></pre>
+    </div>
+
+    <div class="aside" id="candor-half-check">
+      <span class="label"><span lang="en-GB">Why the default stays at 0.5</span><span lang="zh-TW">為何預設維持 0.5</span></span>
+      <p lang="en-GB">The same abliterated Maya-XS model was tested at FFN <code>0</code>, <code>0.5</code> and <code>1.0</code>, each on 68 held-out prompts: 48 targeted questions and 20 comparisons. Each set ran without a system prompt and with the §4.5 stakeholder prompt. The settings were matched: attention <code>0</code>, seed <code>42</code>, temperature <code>0</code>, thinking off, a 4096-token context and a 768-token answer cap. Snap graded the answers blind to strength under one fixed rubric.</p>
+      <p lang="zh-TW">同一個 abliterated Maya-XS 模型分別以 FFN <code>0</code>、<code>0.5</code> 和 <code>1.0</code> 測試，各用相同的 68 條保留題：48 條目標題和 20 條對照題。每組都分別不加 system prompt，以及加上 §4.5 的利害關係人提示。其餘設定一致：注意力 <code>0</code>、種子 <code>42</code>、溫度 <code>0</code>、關閉思考、4096-token context 和 768-token 回答上限。Snap 不知道各答案的強度，以同一套評分準則進行盲評。</p>
+      <p lang="en-GB">In strength order <code>0 / 0.5 / 1.0</code>, evasive answers were <strong>29 / 19 / 16 out of 48</strong> without the prompt, and <strong>21 / 9 / 10 out of 48</strong> with it. At 0.5, all <strong>20 arithmetic, fact and code checks passed</strong>. Strength 1.0 passed 19: its one miss returned the correct result with unrequested prose. All strengths passed both single-turn tool-call checks, and each had three answers hit the token cap.</p>
+      <p lang="zh-TW">按強度 <code>0／0.5／1.0</code> 排列，不加提示時，48 條目標題中判為迴避的回答分別為 <strong>29／19／16</strong>；加上提示後為 <strong>21／9／10</strong>。強度 0.5 的 <strong>20 條算術、事實和程式檢查全部通過</strong>。強度 1.0 通過 19 條，唯一未通過的是在正確結果之外加了未要求的文字。三種強度都通過兩次單回合工具呼叫檢查，也都各有三條回答碰到 token 上限。</p>
+      <p lang="en-GB">Strength 1.0 won more blind preferences than 0.5 (46 versus 37, with 23 for zero and 30 ties), but did not reduce prompted evasion or preserve every exact-output instruction. <strong>We keep 0.5 as the default for coding and tool use</strong>; 1.0 remains an option for free-form answers. This is a fixed test set, not a long-session agent benchmark. The earlier Q1 measurements below are a separate experiment.</p>
+      <p lang="zh-TW">強度 1.0 在盲評中獲選的次數比 0.5 多（46 次對 37 次；強度 0 為 23 次，另有 30 次平手），但搭配提示後的迴避並未更少，也未能遵守每一條精確輸出指令。<strong>程式與工具操作的預設因此維持 0.5</strong>；自由形式的回答仍可選用 1.0。這是固定題組測試，不是長時間智慧體工作階段的評測。下方較早的 Q1 實測則是另一組實驗。</p>
     </div>
 
     <p lang="en-GB">To see the model’s raw answers again, for an evaluation or regression test, set both strengths to zero. The <code>--dir-steering-*</code> arguments will be omitted:</p>
@@ -2332,10 +2356,10 @@ ln -sfn gguf/DeepSeek-V4.1-Flash-1017-Maya-XS-Abliterated.gguf <span class="hi">
         </dd>
       </div>
       <div>
-        <dt>DS4_DIR_STEERING_FFN<span class="default"><span lang="en-GB">default: off (unset) · V4 measurement: −0.75</span><span lang="zh-TW">預設：關（未設）· V4 的實測值：−0.75</span></span></dt>
+        <dt>DS4_DIR_STEERING_FFN<span class="default"><span lang="en-GB">default: 0.5 (requires a direction file) · V4 measurement: −0.75</span><span lang="zh-TW">預設：0.5（需設定方向檔）· V4 的實測值：−0.75</span></span></dt>
         <dd>
-          <p lang="en-GB">The steering strength at the FFN output. Negative values strengthen the direction in the vector. Positive values reverse it. <code>0</code> turns off the FFN side. <code>−0.75</code> is the strength that kept tool calls intact on V4 (Headroom128), and it has not been measured on V4.1 (<a href="#4.4">§4.4</a>). The bundled <code>candor-v41.f32</code> was measured at strength <code>1</code>, which removes its component.</p>
-          <p lang="zh-TW">FFN 輸出端的引導強度。負值會加強向量代表的方向，正值會反轉方向，<code>0</code> 關閉 FFN 這一端。<code>−0.75</code> 是在 V4（Headroom128）上能保住工具呼叫的強度，還沒在 V4.1 上量過（<a href="#4.4">§4.4</a>）。附帶的 <code>candor-v41.f32</code> 實測用的是 <code>1</code>，也就是把該分量整個移除。</p>
+          <p lang="en-GB">The steering strength at the FFN output, defaulting to <code>0.5</code> when a direction file is set. Negative values strengthen the direction in the vector. Positive values reverse it. <code>0</code> turns off the FFN side. <code>−0.75</code> is the strength that kept tool calls intact on V4 (Headroom128), and it has not been measured on V4.1 (<a href="#4.4">§4.4</a>). The bundled <code>candor-v41.f32</code> was measured at strength <code>1</code>, which removes its component.</p>
+          <p lang="zh-TW">FFN 輸出端的引導強度，設定方向檔後預設為 <code>0.5</code>。負值會加強向量代表的方向，正值會反轉方向，<code>0</code> 關閉 FFN 這一端。<code>−0.75</code> 是在 V4（Headroom128）上能保住工具呼叫的強度，還沒在 V4.1 上量過（<a href="#4.4">§4.4</a>）。附帶的 <code>candor-v41.f32</code> 實測用的是 <code>1</code>，也就是把該分量整個移除。</p>
         </dd>
       </div>
       <div>
@@ -2991,8 +3015,8 @@ resp = client.responses.create(
 <span class="c"># <span lang="en-GB">What's-new list (--ssd-streaming, --mtp DSpark.gguf, --max-queue N) go here.</span><span lang="zh-TW">（--ssd-streaming、--mtp DSpark.gguf、--max-queue N）就加在這裡。</span></span></pre>
     </div>
 
-    <p lang="en-GB">To enable steering on a hand-started server, add the four flags the managed path would use, with a direction file of your own for V4.1 (the −0.75 is the V4 measurement):</p>
-    <p lang="zh-TW">若要在手動啟動的伺服器開啟引導，加上代管路徑會用的四個旗標，方向檔請用你自己為 V4.1 建的（−0.75 是 V4 的實測值）：</p>
+    <p lang="en-GB">To enable steering on a hand-started server, add the three steering flags below. They use the bundled V4.1 candor direction at strength 0.5, matching the managed path:</p>
+    <p lang="zh-TW">若要在手動啟動的伺服器開啟引導，加上下面三個引導旗標。它們使用附帶的 V4.1 candor 方向，強度為 0.5，與代管路徑一致：</p>
 
     <div class="term">
       <div class="term-bar"><span><span lang="en-GB">the same launch, steering opted in</span><span lang="zh-TW">同一個啟動，加上引導</span></span><button class="copy" aria-label="Copy the manual server launch with steering"><span lang="en-GB">Copy</span><span lang="zh-TW">複製</span></button></div>
@@ -3003,7 +3027,7 @@ resp = client.responses.create(
   --kv-disk-space-mb <span class="v">65536</span> \
   --vision gguf/DeepSeek-V4.1-Flash-1017-Vision.gguf \
   --dir-steering-file <span class="v">dir-steering/out/candor-v41.f32</span> \
-  --dir-steering-ffn <span class="v">1</span> \
+  --dir-steering-ffn <span class="v">0.5</span> \
   --dir-steering-attn <span class="v">0</span></pre>
     </div>
 
@@ -3466,8 +3490,8 @@ STATE=~/.pi/ds4/server.json
         <div class="a">
           <p lang="en-GB">No. A jailbreak is a prompt that talks a cloud model past its policy layer. It gets around the rules on the input side. Abliteration edits the weights themselves, so it's a change on the model side. Directional steering is a third thing: a small edit to the model's internal signals (its activations) while it runs. Three layers, three mechanisms.</p>
           <p lang="zh-TW">不是。越獄是用提示詞，說服雲端模型繞過它的政策層，從輸入端下手。Abliteration 是直接改權重，從模型本身下手。方向性引導又是第三種：模型執行時，輕輕改動它內部的訊號（激勵值）。三個層次，三種做法。</p>
-          <p lang="en-GB">To see an untouched model, use an unmodified GGUF of DeepSeek V4.1 Flash. To see this fork's weights without steering, leave <code>DS4_DIR_STEERING_FFN</code> and <code>DS4_DIR_STEERING_ATTN</code> unset. If you'd switched them on, set both to <code>0</code>.</p>
-          <p lang="zh-TW">想用原封不動的模型，請用 DeepSeek V4.1 Flash 沒改過的 GGUF。想用這個分叉的權重，但不想開引導，就不要設定 <code>DS4_DIR_STEERING_FFN</code> 和 <code>DS4_DIR_STEERING_ATTN</code>。如果之前開過，就把兩個都設成 <code>0</code>。</p>
+          <p lang="en-GB">To see an untouched model, use an unmodified GGUF of DeepSeek V4.1 Flash. To see this fork's weights without steering, leave <code>DS4_DIR_STEERING_FILE</code> unset, or set both <code>DS4_DIR_STEERING_FFN</code> and <code>DS4_DIR_STEERING_ATTN</code> to <code>0</code>.</p>
+          <p lang="zh-TW">想用原封不動的模型，請用 DeepSeek V4.1 Flash 沒改過的 GGUF。想用這個分叉的權重，但不想開引導，就不要設定 <code>DS4_DIR_STEERING_FILE</code>，或把 <code>DS4_DIR_STEERING_FFN</code> 和 <code>DS4_DIR_STEERING_ATTN</code> 都設成 <code>0</code>。</p>
         </div>
       </div>
 
@@ -3738,7 +3762,7 @@ STATE=~/.pi/ds4/server.json
     <div class="signoff">
       <div class="hand">
         <span lang="en-GB">With care,<br>Audrey Tang</span><span lang="zh-TW">敬祝 自由<br>唐鳳</span>
-        <small><span lang="en-GB">23 October 2026 · pi-kami v 0.8.0</span><span lang="zh-TW">2026 年 10 月 23 日 · pi-kami v 0.8.0</span></small>
+        <small><span lang="en-GB">1 November 2026 · pi-kami v 0.8.1</span><span lang="zh-TW">2026 年 11 月 1 日 · pi-kami v 0.8.1</span></small>
       </div>
     </div>
   </section>

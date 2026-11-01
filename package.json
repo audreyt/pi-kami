@@ -1,6 +1,6 @@
 {
   "name": "pi-kami",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Pi provider for deterministic local inference on Apple Silicon: DeepSeek V4.1 Flash Maya-XS through ds4 on 128 GB Macs and Recursive's Flint through rec on M4 Pro, M5 Pro and M5 Max Macs with 48 GB or more. Formerly pi-ds4.",
   "type": "module",
   "license": "MIT",

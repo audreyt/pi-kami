@@ -42,18 +42,18 @@ that URL here, so keep it and run `pi update` as usual. Don't add the pi-kami
 URL as well. pi treats the two URLs as two packages, and the second copy stays
 inactive and prints a warning at startup.
 
-### What this release serves (`v0.8.0`)
+### What this release serves (`v0.8.1`)
 
 | Item | Value |
 |---|---|
-| Package version | **0.8.0** |
+| Package version | **0.8.1** |
 | `SUPPORT_PIN` | `0dff39f` (`audreyt/ds4`: Q8 embedding, compressor and indexer support for Maya-XS) |
 | Preferred GGUF | DeepSeek V4.1 Flash 1017 Maya-XS abliterated from [`audreyt/DeepSeek-V4.1-Flash-Abliterated-GGUF`](https://huggingface.co/audreyt/DeepSeek-V4.1-Flash-Abliterated-GGUF) plus the 1017 vision sidecar from [`audreyt/deepseek-v4.1-flash-1017-gguf`](https://huggingface.co/audreyt/deepseek-v4.1-flash-1017-gguf) (selector `maya-xs`, aliases `q1` and `preferred`) |
 | Language revision | `89cba799fcddca88bde8c8cfa8006d28dbf8dc79` |
 | Language SHA-256 | `f414995b3797f77009634fac995f50834e70393771f9423fca984c892503b42a` |
 | Default context | 128 k tokens (`DS4_CONTEXT_KB=128`). The managed vision path fits with 512-row prefill on a 128 GB M5 Max |
 | Flint tier | rec `0.1.0` (runtime SHA-256 `09063110dfe9…`), model `flint` (`flint-int4`, about 23 GB), installed on first use of `rec/flint` |
-| Guide | **v0.8.0** Maya-XS (~107.35 GiB resident + vision sidecar), plus the Flint tier |
+| Guide | **v0.8.1** Maya-XS (~107.35 GiB resident + vision sidecar), plus the Flint tier |
 
 `pi install https://github.com/audreyt/pi-kami` installs exactly this tag.
 
@@ -280,9 +280,21 @@ sensitive history. Its measurements are in the
 
 ```sh
 export DS4_DIR_STEERING_FILE=dir-steering/out/candor-v41.f32   # 40 x 5120 float32
-export DS4_DIR_STEERING_FFN=1
+export DS4_DIR_STEERING_FFN=0.5
 export DS4_DIR_STEERING_ATTN=0
 ```
+
+FFN **0.5 remains the recommended setting for coding and tool use**. A
+same-model comparison on abliterated Maya-XS tested strengths 0, 0.5 and 1.0
+on the same 68 held-out prompts, without and with the stakeholder system
+prompt. Fresh blinded Snap grading marked 29/48, 19/48 and 16/48 targeted
+answers evasive without the prompt, and 21/48, 9/48 and 10/48 with it,
+respectively. At 0.5, all 20 arithmetic, fact and code checks and both
+single-turn tool-call checks passed. Strength 1.0 won more blind preferences
+but missed one exact-output instruction despite returning the correct result.
+Each strength had three answers hit the 768-token cap. The
+[guide](https://audreyt.github.io/pi-kami/#candor-half-check) records the
+aggregate comparison separately from the earlier Q1 measurements.
 
 ![uncertainty demo](uncertainty.gif)
 
@@ -338,6 +350,17 @@ deterministic tool-call IDs from seeded requests on audreyt/ds4.
   under the 112 GiB guard. The managed vision default is 128000.
 
 ## What's new
+
+### v0.8.1 (2026-11-01): candor at 0.5
+
+- When a direction file is selected, FFN steering now defaults to 0.5.
+  Steering remains opt-in; no direction file means no steering.
+- Keep 0.5 as the recommended setting for coding and tool use, based on the
+  matched Maya-XS comparison at strengths 0, 0.5 and 1.0.
+- Document aggregate comparison results in both languages, with no named
+  test examples. Explicit strength overrides and the zero-strength off
+  switch remain available.
+- The DeepSeek and Flint engine pins and model downloads are unchanged.
 
 ### v0.8.0 (2026-10-23): pi-kami and an experimental Flint tier
 
